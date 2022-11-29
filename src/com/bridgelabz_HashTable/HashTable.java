@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class HashTable<K,V> {
     K key;
     V value;
-    final int hashCode;
+    final int HashTable;
 
     // Reference to next node
     HashTable<K, V> next;
@@ -16,7 +16,7 @@ public class HashTable<K,V> {
     public HashTable(K key, V value, int hashCode) {
         this.key = key;
         this.value = value;
-        this.hashCode = hashCode;
+        this.HashTable = hashCode;
     }
 }
 
@@ -70,7 +70,7 @@ public class HashTable<K,V> {
         // If key was not there
         if (head == null)
             return;
-        else if (head.next == null && head.key.equals(key) && hashCode == head.hashCode) {
+        else if (head.next == null && head.key.equals(key) && hashCode == head.HashTable) {
             head = null;
             bucketArray.set(bucketIndex, head); // ******** Added Newly
             return;
@@ -81,13 +81,13 @@ public class HashTable<K,V> {
         HashTable<K, V> right = left.next;
 
         // Delete First
-        if (temp.key.equals(key) && hashCode == temp.hashCode) {
+        if (temp.key.equals(key) && hashCode == temp.HashTable) {
             temp = temp.next;
         }
 
         while (right != null) {
 
-            if (right.key.equals(key) && hashCode == right.hashCode) {
+            if (right.key.equals(key) && hashCode == right.HashTable) {
                 left.next = right.next;
                 break;
             }
@@ -112,7 +112,7 @@ public class HashTable<K,V> {
 
         // Search key in chain
         while (head != null) {
-            if (head.key.equals(key) && head.hashCode == hashCode)
+            if (head.key.equals(key) && head.HashTable == hashCode)
                 return head.key;
             head = head.next;
         }
@@ -131,7 +131,7 @@ public class HashTable<K,V> {
 
         // Check if key is already present
         while (head != null) {
-            if (head.key.equals(key) && head.hashCode == hashCode) {
+            if (head.key.equals(key) && head.HashTable == hashCode) {
                 head.value = value;
                 return;
             }
@@ -180,7 +180,8 @@ public class HashTable<K,V> {
             }
         }
         map.display();
-        System.out.println();
+        //Removing  avoidable from the string
+        System.out.println("Map After removing the avoidable string");
         map.remove("avoidable");
         map.display();
 
