@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 //A node of chains
 public class HashTable<K,V> {
-
     K key;
     V value;
     final int hashCode;
@@ -169,26 +168,21 @@ public class HashTable<K,V> {
     // Driver method to test Map class
     public static void main(String[] args) {
         Map<String, Integer> map = new Map<>();
-        Scanner sc = new Scanner(System.in);
-        int n = 0;
-        while (n == 0) {
-            System.out.println("Enter Y to enter word or N to stop: ");
-            String input = sc.next();
-            if (input.equalsIgnoreCase("y")) {
-                System.out.println("Enter the Word: ");
-                String input1 = sc.next();
-                int freq = 1;
-                if (input1.equalsIgnoreCase((String) map.get(input1))) {
-                    freq++;
-                    map.add(input1.toLowerCase(), freq);
-                } else {
-                    map.add(input1, freq);
-                }
+        String input2="Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
+        String[] input3=input2.toLowerCase().split(" ");
+        for (int i=0; i<input3.length; i++) {
+            int freq = 1;
+            if (input3[i].equalsIgnoreCase((String) map.get(input3[i]))) {
+                freq++;
+                map.add(input3[i].toLowerCase(), freq);
             } else {
-                break;
+                map.add(input3[i], freq);
             }
-
         }
         map.display();
+        System.out.println();
+        map.remove("avoidable");
+        map.display();
+
     }
 }
