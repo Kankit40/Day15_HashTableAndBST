@@ -46,6 +46,39 @@ public class BinarySearchTree {
         }
     }
 
+    public static void search(TreeNode root, int data, TreeNode parent) {
+        // if the root is null
+        if (root == null) {
+            System.out.print("Key Not found");
+            return;
+        }
+
+        // if the key is found
+        if (root.data == data) {
+            if (parent == null) {
+                System.out.print("The node with key " + data + " is root node");
+            }
+
+            else if (data < parent.data) {
+                System.out.println("The given element " + data + " is the left node of the Parent Node " + parent.data);
+            } else {
+                System.out
+                        .println("The given element " + data + " is the right node of the Parent Node " + parent.data);
+            }
+
+            return;
+        }
+
+        // if the given key is less than the root node, recur for the left subtree;
+        // otherwise, recur for the right subtree
+
+        if (data < root.data) {
+            search(root.left, data, root);
+        } else {
+            search(root.right, data, root);
+        }
+    }
+
     public static void main(String[] args) {
         BinarySearchTree tree = new BinarySearchTree();
         tree.insert(3);
@@ -62,6 +95,8 @@ public class BinarySearchTree {
         tree.insert(95);
         tree.insert(70);
 
+        tree.inOrder(tree.root);
+        search(tree.root, 63, null);
         tree.inOrder(tree.root);
     }
 }
